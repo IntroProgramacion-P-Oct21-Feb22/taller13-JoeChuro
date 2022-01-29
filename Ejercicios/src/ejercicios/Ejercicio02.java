@@ -5,6 +5,7 @@
  */
 package ejercicios;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 /**
@@ -14,6 +15,7 @@ import java.util.Scanner;
 public class Ejercicio02 {
 
     public static void main(String[] args) {
+    try{
         Scanner entrada = new Scanner(System.in);
         double calificacion;
         double promedio;
@@ -25,10 +27,23 @@ public class Ejercicio02 {
             calificacion = entrada.nextDouble();
             suma = suma + calificacion;
             i = i + 1;
+            if(calificacion <0 || calificacion >10){
+               throw new Exception("Valores no permitidos");
+            }
         }
 
         promedio = suma / numeroCalificaciones;
 
         System.out.printf("%.2f\n", promedio);
+        
+    }
+    catch (InputMismatchException inputMismatchException) {
+            
+            System.out.printf("Existe un error de tipo %s\n", 
+                    inputMismatchException);
+        }
+    catch (Exception e) {
+            System.out.printf("Ocurrió una excepción %s\n", e);
+        }
     }
 }
